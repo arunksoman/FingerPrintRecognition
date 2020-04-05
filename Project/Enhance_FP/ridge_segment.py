@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 18 23:04:30 2016
-
-@author: utkarsh
-"""
-
-
-
 # RIDGESEGMENT - Normalises fingerprint image and segments ridge region
 #
 # Function identifies ridge regions of a fingerprint image and returns a
@@ -66,25 +57,25 @@ def ridge_segment(im,blksze,thresh):
     new_rows =  np.int(blksze * np.ceil((np.float(rows))/(np.float(blksze))))
     new_cols =  np.int(blksze * np.ceil((np.float(cols))/(np.float(blksze))))
     
-    padded_img = np.zeros((new_rows,new_cols));
-    stddevim = np.zeros((new_rows,new_cols));
+    padded_img = np.zeros((new_rows,new_cols))
+    stddevim = np.zeros((new_rows,new_cols))
     
-    padded_img[0:rows][:,0:cols] = im;
+    padded_img[0:rows][:,0:cols] = im
     
     for i in range(0,new_rows,blksze):
         for j in range(0,new_cols,blksze):
-            block = padded_img[i:i+blksze][:,j:j+blksze];
+            block = padded_img[i:i+blksze][:,j:j+blksze]
             
             stddevim[i:i+blksze][:,j:j+blksze] = np.std(block)*np.ones(block.shape)
     
     stddevim = stddevim[0:rows][:,0:cols]
                     
-    mask = stddevim > thresh;
+    mask = stddevim > thresh
     
-    mean_val = np.mean(im[mask]);
+    mean_val = np.mean(im[mask])
     
-    std_val = np.std(im[mask]);
+    std_val = np.std(im[mask])
     
-    normim = (im - mean_val)/(std_val);
+    normim = (im - mean_val)/(std_val)
     
     return(normim,mask)

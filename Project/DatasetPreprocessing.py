@@ -3,7 +3,7 @@ import glob
 import numpy as np
 import cv2
 import sys
-from image_enhance import image_enhance
+from Enhance_FP.image_enhance import image_enhance
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 print(base_dir)
